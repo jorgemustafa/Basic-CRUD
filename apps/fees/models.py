@@ -43,8 +43,8 @@ class Fee(models.Model):
         verbose_name = 'Fee'
         verbose_name_plural = 'Fees'
         ordering = [
-            'cliente'
+            'id'
         ]
 
-    def __str__(self):
+    def __int__(self):
          return self.cliente
