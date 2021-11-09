@@ -35,3 +35,10 @@ class AcordoAereo(models.Model):
 
     def __str__(self):
         return self.acordo
+
+    class Meta:
+        verbose_name = 'Acordo Aéreo'
+        verbose_name_plural = 'Acordos Aéreos'
+        ordering = [
+            'acordo'
+        ]

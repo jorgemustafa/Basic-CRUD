@@ -1,5 +1,7 @@
+import datetime
 from django.db import models
 from apps.clientes.models import Cliente
+from django.contrib.auth.models import User
 
 
 class Fee(models.Model):
@@ -33,9 +35,9 @@ class Fee(models.Model):
     eventos = models.IntegerField('Eventos')
     demais = models.IntegerField('Demais Serviços')
     renovacao = models.DateTimeField('Data para a Renovação do valor Fee')
-    #user = models.ForeignKey(User, on_delete=models.CASCADE,help_text='Usuário da Inclusão')
-    #inclusao = models.DateTimeField(default=timezone.now)
-    ativo = models.BooleanField(default=False)
+    inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
+    ativo = models.BooleanField('Ativo', default=True)
 
     class Meta:
         verbose_name = 'Fee'
