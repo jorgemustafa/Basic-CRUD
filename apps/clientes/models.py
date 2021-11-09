@@ -13,9 +13,9 @@ class Cliente(models.Model):
     executivo = models.ForeignKey(Colaborador, on_delete=models.CASCADE, null=True)
     postos = models.ForeignKey(POS, on_delete=models.CASCADE, null=True)
     vencimento = models.DateField('Data de Vencimento do Contrato')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
-    ativo = models.BooleanField(default=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário', null=True)
+    ativo = models.BooleanField('Ativo', default=True)
 
     def __str__(self):
         return self.nome

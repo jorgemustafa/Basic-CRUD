@@ -31,7 +31,7 @@ class AcordoAereo(models.Model):
     continente = models.CharField('Nome dos Continentes', max_length=2, choices=continente_choices)
     inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
-    ativo = models.BooleanField('Status', default=True)
+    ativo = models.BooleanField('Ativo', default=True)
 
     def __str__(self):
         return self.acordo
