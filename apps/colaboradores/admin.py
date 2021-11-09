@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Colaboradores
+from .models import Colaborador
 
-admin.site.register(Colaboradores)
+admin.site.register(Colaborador)
 

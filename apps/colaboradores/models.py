@@ -1,7 +1,8 @@
 from django.db import models
 
-class Colaboradores(models.Model):
-    nome = models.CharField('Nome do Colaborador', max_length=200,)
+
+class Colaborador(models.Model):
+    nome = models.CharField('Nome do Colaborador', max_length=200)
     email = models.CharField('Email do Colaborador', max_length=60)
     #user = models.ForeignKey(User, on_delete=models.CASCADE)
     #inclusao = models.DateTimeField(default=timezone.now)

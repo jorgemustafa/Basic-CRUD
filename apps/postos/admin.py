@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Posto
+from .models import POS
 
-admin.site.register(Posto)
+admin.site.register(POS)

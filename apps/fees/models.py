@@ -1,39 +1,48 @@
 from django.db import models
+from apps.clientes.models import Cliente
+
 
 class Fee(models.Model):
-    #cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, help_text='Nome do Cliente')
-    aenacon = models.IntegerField(help_text='Valor do Fee - Aéreo Nacional Online')
-    aeinton = models.IntegerField(help_text='Valor do Fee - Aéreo Internacional Online')
-    honacon = models.IntegerField(help_text='Valor do Fee - Hotel Nacional Online')
-    hointon = models.IntegerField(help_text='Hotel Internacional Online')
-    canacon = models.IntegerField(help_text='Carro Nacional Online')
-    cainton = models.IntegerField(help_text='Carro Internacional Online')
-    aenacoff = models.IntegerField(help_text='Aéreo Nacional OffLine')
-    aeintoff = models.IntegerField(help_text='Aéreo Internacional OffLine')
-    honacoff = models.IntegerField(help_text='Hotel Nacional OffLine')
-    hointoff = models.IntegerField(help_text='Hotel Internacional OffLine')
-    canacoff = models.IntegerField(help_text='Carro Nacional OffLine')
-    caintoff = models.IntegerField(help_text='Carro Internacional OffLine')
-    vip = models.IntegerField(help_text='Vip House')
-    doc = models.IntegerField(help_text='Documentação')
-    fer = models.IntegerField(help_text='Passagem Ferroviária')
-    emergencial = models.IntegerField(help_text='Atendimento Emergencial')
-    ateae = models.IntegerField(help_text='Atendimento Aeroporto')
-    segViagem = models.IntegerField(help_text='Seguro Viagem')
-    passRod = models.IntegerField(help_text='Passagem Rodoviária')
-    reembolso = models.IntegerField(help_text='Reembolso')
-    cancelamento = models.IntegerField(help_text='Cancelamento')
-    assentoConf = models.IntegerField(help_text='Assento Conforto')
-    implantacao = models.IntegerField(help_text='Implantação')
-    treinamento = models.IntegerField(help_text='Treinamento')
-    consultoria = models.IntegerField(help_text='Gestão de Consultoria')
-    expense = models.IntegerField(help_text='Expense')
-    eventos = models.IntegerField(help_text='Eventos')
-    demais = models.IntegerField(help_text='Demais Serviços')
-    renovacao = models.DateTimeField(help_text='Data para a Renovação do valor Fee')
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Nome do Cliente', null=True)
+    aenacon = models.IntegerField('Valor do Fee - Aéreo Nacional Online')
+    aeinton = models.IntegerField('Valor do Fee - Aéreo Internacional Online')
+    honacon = models.IntegerField('Valor do Fee - Hotel Nacional Online')
+    hointon = models.IntegerField('Hotel Internacional Online')
+    canacon = models.IntegerField('Carro Nacional Online')
+    cainton = models.IntegerField('Carro Internacional Online')
+    aenacoff = models.IntegerField('Aéreo Nacional OffLine')
+    aeintoff = models.IntegerField('Aéreo Internacional OffLine')
+    honacoff = models.IntegerField('Hotel Nacional OffLine')
+    hointoff = models.IntegerField('Hotel Internacional OffLine')
+    canacoff = models.IntegerField('Carro Nacional OffLine')
+    caintoff = models.IntegerField('Carro Internacional OffLine')
+    vip = models.IntegerField('Vip House')
+    doc = models.IntegerField('Documentação')
+    fer = models.IntegerField('Passagem Ferroviária')
+    emergencial = models.IntegerField('Atendimento Emergencial')
+    ateae = models.IntegerField('Atendimento Aeroporto')
+    segViagem = models.IntegerField('Seguro Viagem')
+    passRod = models.IntegerField('Passagem Rodoviária')
+    reembolso = models.IntegerField('Reembolso')
+    cancelamento = models.IntegerField('Cancelamento')
+    assentoConf = models.IntegerField('Assento Conforto')
+    implantacao = models.IntegerField('Implantação')
+    treinamento = models.IntegerField('Treinamento')
+    consultoria = models.IntegerField('Gestão de Consultoria')
+    expense = models.IntegerField('Expense')
+    eventos = models.IntegerField('Eventos')
+    demais = models.IntegerField('Demais Serviços')
+    renovacao = models.DateTimeField('Data para a Renovação do valor Fee')
     #user = models.ForeignKey(User, on_delete=models.CASCADE,help_text='Usuário da Inclusão')
     #inclusao = models.DateTimeField(default=timezone.now)
     ativo = models.BooleanField(default=False)
 
-    # def __str__(self):
-    #     return self.cliente
+    class Meta:
+        verbose_name = 'Fee'
+        verbose_name_plural = 'Fees'
+        ordering = [
+            'cliente'
+        ]
+
+    def __str__(self):
+         return self.cliente
