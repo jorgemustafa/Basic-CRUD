@@ -1,0 +1,36 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for colaborador in colaboradores %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_colaborador' colaborador.id %}">{{ colaborador.nome }}</a></th>
+                <td>{{ colaborador.email }}</td>
+                <td>{{ colaborador.ativo }}</td>
+                <td>
+
+                    <a href="{% url 'delete_colaborador' colaborador.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+
+    <a href="{% url 'new_colaborador' %}">
+        <button class="btn btn-primary">Novo Colaborador</button>
+    </a>
+
+{% endblock %}
+
+

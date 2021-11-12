@@ -1,3 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import GrupoForm
+from .models import Grupo
 
-# Create your views here.
+def list_grupo(request):
+    grupo = Grupo.objects.all()
+    return render(request, 'grupo.html', {'grupo': grupo})
+
+def new_grupo(request):
+    form = GrupoForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('list_grupo')
+    return render(request, 'grupo_form.html', {'form': form})
+
+def update_grupo(request, id):
+    grupo = get_object_or_404(Grupo, pk=id)
+    form = GrupoForm(request.POST or None, instance=grupo)
+
+    if form.is_valid():
+        form.save()
+        return redirect('list_grupo')
+    return render(request, 'grupo_form.html', {'form': form})
+
+def delete_grupo(request, id):
+    grupo = get_object_or_404(Grupo, pk=id)
+    form = GrupoForm(request.POST or None, instance=grupo)
+
+    if request.method == 'POST':
+        grupo.delete()
+        return redirect('list_grupo')
+    return render(request, 'grupo_delete_confirm.html', {'grupo': grupo})

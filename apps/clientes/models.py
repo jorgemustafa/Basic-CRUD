@@ -10,7 +10,7 @@ class Cliente(models.Model):
     nome = models.CharField('Razão Social', max_length=60)
     fantasia = models.CharField('Nome Fantasia', max_length=60)
     grupos = models.ForeignKey(Grupo, on_delete=models.CASCADE, verbose_name='Grupo de Clientes')
-    executivo = models.ForeignKey(Colaborador, on_delete=models.CASCADE, verbose_name='Nome do Colaborador')
+    executivo = models.ForeignKey(Colaborador, on_delete=models.CASCADE, verbose_name='Nome do Executivo')
     postos = models.ForeignKey(POS, on_delete=models.CASCADE, verbose_name='Ponto de Atendimento')
     vencimento = models.DateField('Data de Vencimento do Contrato')
     vigencia_choices = [

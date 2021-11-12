@@ -34,7 +34,7 @@ class Fee(models.Model):
     expense = models.IntegerField('Expense')
     eventos = models.IntegerField('Eventos')
     demais = models.IntegerField('Demais Serviços')
-    renovacao = models.DateTimeField('Data para a Renovação do valor Fee')
+    renovacao = models.DateField('Data para a Renovação do valor Fee')
     inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
@@ -45,6 +45,3 @@ class Fee(models.Model):
         ordering = [
             'id'
         ]
-
-    def __int__(self):
-         return self.cliente

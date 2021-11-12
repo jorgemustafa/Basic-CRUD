@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+   <h1>Tem certeza que deseja deletar {{ fee }}?</h1>
+
+   <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} <br>
+        <button type="submit" class = "btn btn-danger">Delete</button>
+   </form>
+    <br>
+   <a href="{% url 'list_fee' %}"><button class = "btn btn-caution">Cancelar</button></a>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Código</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for grupo in grupo %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_grupo' grupo.id %}">{{ grupo.nome }}</a></th>
+                <td>{{ grupo.cod }}</td>
+                <td>{{ grupo.ativo }}</td>
+                <td>
+
+                    <a href="{% url 'delete_grupo' grupo.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+
+    <a href="{% url 'new_grupo' %}">
+        <button class="btn btn-primary">Novo Grupo</button>
+    </a>
+
+{% endblock %}
+
+

@@ -1,0 +1,35 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Código POS</th>
+            <th scope="col">Nome POS</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for posto in postos %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_posto' posto.id %}">{{ posto.nome }}</a></th>
+                <td>{{ posto.nome }}</td>
+                <td>{{ posto.ativo}}</td>
+                <td>
+                    <a href="{% url 'delete_posto' posto.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+
+    <a href="{% url 'new_posto' %}">
+        <button class="btn btn-primary">Novo POS</button>
+    </a>
+
+{% endblock %}
+
+

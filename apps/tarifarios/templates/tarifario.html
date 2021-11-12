@@ -1,0 +1,51 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">POS</th>
+            <th scope="col">Tipo Quarto</th>
+            <th scope="col">Tarifa Qualificada</th>
+            <th scope="col">Diária</th>
+            <th scope="col">Taxa</th>
+            <th scope="col">Tarifa Acordo</th>
+            <th scope="col">Tarifa Flutuante</th>
+            <th scope="col">Validade</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tarifario in tarifario %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_tarifario' tarifario.id %}">{{ tarifario.cliente }}</a></th>
+                <td>{{ tarifario.fornecedor }}</td>
+                <td>{{ tarifario.pos }}</td>
+                <td>{{ tarifario.tipoQuarto }}</td>
+                <td>{{ tarifario.tarifaQualif }}</td>
+                <td>{{ tarifario.diaria }}</td>
+                <td>{{ tarifario.taxa }}</td>
+                <td>{{ tarifario.tarifaAcordo }}</td>
+                <td>{{ tarifario.tarifaFlut }}</td>
+                <td>{{ tarifario.validade }}</td>
+                <td>{{ tarifario.ativo}}</td>
+                <td>
+                    <a href="{% url 'delete_tarifario' tarifario.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+
+    <a href="{% url 'new_tarifario' %}">
+        <button class="btn btn-primary">Novo Tarifário</button>
+    </a>
+
+{% endblock %}
+
+

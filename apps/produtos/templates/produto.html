@@ -1,0 +1,35 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Código</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produto in produto %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_produto' produto.id %}">{{ produto.nome }}</a></th>
+                <td>{{ produto.codigo }}</td>
+                <td>{{ produto.ativo}}</td>
+                <td>
+                    <a href="{% url 'delete_produto' produto.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+
+    <a href="{% url 'new_produto' %}">
+        <button class="btn btn-primary">Novo Produto</button>
+    </a>
+
+{% endblock %}
+
+

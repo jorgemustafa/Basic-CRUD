@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Acordo</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">POS</th>
+            <th scope="col">Validade</th>
+            <th scope="col">Desconto</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Continente</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for acordo in acordo %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_acordo' acordo.id %}">{{ acordo.acordo }}</a></th>
+                <td>{{ acordo.cliente }}</td>
+                <td>{{ acordo.grupos }}</td>
+                <td>{{ acordo.fornecedores }}</td>
+                <td>{{ acordo.postos }}</td>
+                <td>{{ acordo.validade }}</td>
+                <td>{{ acordo.desconto }}</td>
+                <td>{{ acordo.destino }}</td>
+                <td>{{ acordo.continente }}</td>
+                <td>{{ acordo.ativo }}</td>
+                <td>
+                    <a href="{% url 'delete_acordo' acordo.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+    <a href="{% url 'new_acordo' %}">
+        <button class="btn btn-primary">Novo Acordo</button>
+    </a>
+
+{% endblock %}
+
+

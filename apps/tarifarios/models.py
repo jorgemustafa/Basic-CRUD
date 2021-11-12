@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 
 
 class Tarifario(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE)
-    pos = models.ForeignKey(POS, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
+    fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE, verbose_name='Fornecedor')
+    pos = models.ForeignKey(POS, on_delete=models.CASCADE, verbose_name='POS')
     tipoQuarto = models.CharField('Tipo de Apartamento', max_length=3)
     tarifaQualif = models.BooleanField('Se a Tarifa é Qualificada com o Fornecedor', default=False)
     diaria = models.IntegerField('Valor da Diária')
@@ -21,7 +21,7 @@ class Tarifario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.cliente
 
     class Meta:

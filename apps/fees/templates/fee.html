@@ -1,0 +1,92 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Aenacon</th>
+            <th scope="col">Aeinton</th>
+            <th scope="col">Honacon</th>
+            <th scope="col">Hointon</th>
+            <th scope="col">Canacon</th>
+            <th scope="col">Cainton</th>
+            <th scope="col">Aenacoff</th>
+            <th scope="col">Aeintoff</th>
+            <th scope="col">Honacoff</th>
+            <th scope="col">Hointoff</th>
+            <th scope="col">Canacoff</th>
+            <th scope="col">Caintoff</th>
+            <th scope="col">Vip</th>
+            <th scope="col">Doc</th>
+            <th scope="col">Fer</th>
+            <th scope="col">Emergencial</th>
+            <th scope="col">Ateae</th>
+            <th scope="col">SegViagem</th>
+            <th scope="col">PassRod</th>
+            <th scope="col">Reembolso</th>
+            <th scope="col">Cancelamento</th>
+            <th scope="col">AssentoConf</th>
+            <th scope="col">Implantação</th>
+            <th scope="col">Treinamento</th>
+            <th scope="col">Consultoria</th>
+            <th scope="col">Expense</th>
+            <th scope="col">Eventos</th>
+            <th scope="col">Demais</th>
+            <th scope="col">Renovação</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for fee in fees %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_fee' fee.id %}">{{ fee.cliente }}</a></th>
+                <td>{{ fee.aenacon }}</td>
+                <td>{{ fee.aeinton }}</td>
+                <td>{{ fee.honacon }}</td>
+                <td>{{ fee.hointon }}</td>
+                <td>{{ fee.canacon }}</td>
+                <td>{{ fee.cainton }}</td>
+                <td>{{ fee.aenacoff }}</td>
+                <td>{{ fee.aeintoff }}</td>
+                <td>{{ fee.honacoff }}</td>
+                <td>{{ fee.hointoff }}</td>
+                <td>{{ fee.canacoff }}</td>
+                <td>{{ fee.caintoff }}</td>
+                <td>{{ fee.vip }}</td>
+                <td>{{ fee.doc }}</td>
+                <td>{{ fee.fer }}</td>
+                <td>{{ fee.emergencial }}</td>
+                <td>{{ fee.ateae }}</td>
+                <td>{{ fee.segViagem }}</td>
+                <td>{{ fee.passRod }}</td>
+                <td>{{ fee.reembolso }}</td>
+                <td>{{ fee.cancelamento }}</td>
+                <td>{{ fee.assentoConf }}</td>
+                <td>{{ fee.implantacao }}</td>
+                <td>{{ fee.treinamento }}</td>
+                <td>{{ fee.consultoria }}</td>
+                <td>{{ fee.expense }}</td>
+                <td>{{ fee.eventos }}</td>
+                <td>{{ fee.demais }}</td>
+                <td>{{ fee.renovacao }}</td>
+                <td>{{ fee.ativo }}</td>
+                <td>
+
+                    <a href="{% url 'delete_fee' fee.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+
+    <a href="{% url 'new_fee' %}">
+        <button class="btn btn-primary">Novo Fee</button>
+    </a>
+
+{% endblock %}
+
+
