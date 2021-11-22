@@ -1,92 +1,77 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block main %}
 
-<h4 class="h4 mb-4 text-gray-800"> Acordos Aéreos</h4>
+    <h4 class="h4 mb-4 text-gray-800"> Acordos Aéreos</h4>
 
-<table class="table">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">Acordo</th>
-        <th scope="col">Cliente</th>
-        <th scope="col">Grupo</th>
-        <th scope="col">Fornecedor</th>
-        <th scope="col">POS</th>
-        <th scope="col">Validade</th>
-        <th scope="col">Desconto</th>
-        <th scope="col">Destino</th>
-        <th scope="col">Continente</th>
-        <th scope="col">Ativo</th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for acordo in acordo %}
-    <tr>
-        <th scope="row"><a href="{% url 'update_acordo' acordo.id %}">{{ acordo.acordo }}</a></th>
-        <td>{{ acordo.cliente }}</td>
-        <td>{{ acordo.grupos }}</td>
-        <td>{{ acordo.fornecedores }}</td>
-        <td>{{ acordo.postos }}</td>
-        <td>{{ acordo.validade }}</td>
-        <td>{{ acordo.desconto }}</td>
-        <td>{{ acordo.destino }}</td>
-        <td>{{ acordo.continente }}</td>
-        <td>{{ acordo.ativo }}</td>
-        <td>
-            <a href="{% url 'delete_acordo' acordo.id %}"><i class="bi bi-trash"></i></a>
-        </td>
-    </tr>
-    </tbody>
-    {% endfor %}
-</table>
-<a href="{% url 'select_fornecedor' %}">
-    <button class="btn btn-primary">Novo Acordo</button>
-</a>
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Filtre sua pesquisa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-<!--<button class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado">Novo Acordo Teste</button>-->
+                <div class="modal-body">
+                    <form method="get">
+                        {{ myFilter.form|crispy }}
+                        <button class="btn btn-primary" type="submit">Filtrar</button>
+                        <a href="{% url 'list_acordo' %}" style="font-size: x-small">Limpar Filtros</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
 
-<!--&lt;!&ndash; Modal &ndash;&gt;-->
-<!--<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"-->
-<!--     aria-labelledby="TituloModalCentralizado" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
-<!--        <div class="modal-content">-->
-<!--            <!doctype html>-->
-<!--            <html lang="en">-->
-<!--            <head>-->
-<!--                <meta charset="UTF-8">-->
-<!--                <meta name="viewport"-->
-<!--                      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-<!--                <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--                <title>Document</title>-->
-<!--            </head>-->
-<!--            <body>-->
-<!-- <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-
-<!--                <h4 class="h4 mb-4 text-gray-800"> Selecione abaixo um fornecedor para cadastrar um Acordo:</h4>-->
-<!--                <div id="list-example" class="list-group">-->
-<!--                    {% for fornecedor in fornecedor %}-->
-<!--                    <a class="list-group-item list-group-item-action"-->
-<!--                       href="{% url 'new_acordo' fornecedor %}">{{ fornecedor }}</a>-->
-<!--                    {% endfor %}-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>-->
-<!--                <button type="button" class="btn btn-primary">Salvar mudanças</button>-->
-<!--            </div>-->
-<!--            </body>-->
-<!--            </html>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Acordo</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">POS</th>
+            <th scope="col">Validade</th>
+            <th scope="col">Desconto</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Continente</th>
+            <th scope="col">Ativo</th>
+            <th scope="col">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Modal"
+                        style="display: block; ">
+                    Filtros
+                </button>
+                {#                <a href="{% url 'list_acordo' %}" style="font-size: x-small">Limpar Filtros</a#}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for acordo in acordos %}
+            <tr>
+                <th scope="row"><a href="{% url 'update_acordo' acordo.id %}">{{ acordo.acordo }}</a></th>
+                <td>{{ acordo.cliente }}</td>
+                <td>{{ acordo.grupos }}</td>
+                <td>{{ acordo.fornecedores }}</td>
+                <td>{{ acordo.postos }}</td>
+                <td>{{ acordo.validade }}</td>
+                <td>{{ acordo.desconto }}</td>
+                <td>{{ acordo.destino }}</td>
+                <td>{{ acordo.continente }}</td>
+                <td>{{ acordo.ativo }}</td>
+                <td>
+                    <a href="{% url 'delete_acordo' acordo.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+    <a href="{% url 'select_fornecedor' %}">
+        <button class="btn btn-primary">Novo Acordo</button>
+    </a>
 
 {% endblock %}
 

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import FeeFilter
 from .forms import FeeForm
 from .models import Fee
 
@@ -7,7 +8,11 @@ from .models import Fee
 @login_required
 def list_fee(request):
     fees = Fee.objects.all()
-    return render(request, 'fee.html', {'fees': fees})
+
+    myFilter = FeeFilter(request.GET, queryset=fees)
+    fees = myFilter.qs
+
+    return render(request, 'fee.html', {'fees': fees, 'myFilter': myFilter})
 
 
 @login_required

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import ProdutoFilter
 from .models import Produto
 from .forms import ProdutoForm
 
@@ -7,7 +8,11 @@ from .forms import ProdutoForm
 @login_required
 def list_produto(request):
     produto = Produto.objects.all()
-    return render(request, 'produto.html', {'produto': produto})
+
+    myFilter = ProdutoFilter(request.GET, queryset=produto)
+    produto = myFilter.qs
+
+    return render(request, 'produto.html', {'produto': produto, 'myFilter': myFilter})
 
 
 @login_required

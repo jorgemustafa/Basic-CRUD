@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block main %}
 
     <h4 class="h4 mb-4 text-gray-800">Fornecedores</h4>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Filtre sua pesquisa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="get">
+                        {{ myFilter.form|crispy }}
+                        <button class="btn btn-primary" type="submit">Filtrar</button>
+                        <a href="{% url 'list_fornecedor' %}" style="font-size: x-small">Limpar Filtros</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <table class="table">
         <thead class="thead-light">
@@ -12,16 +32,22 @@
             <th scope="col">Grupo do Fornecedor</th>
             <th scope="col">Produtos</th>
             <th scope="col">Ativo</th>
-            <th scope="col"></th>
+            <th scope="col">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
+                        data-bs-target="#Modal">
+                    Filtros
+                </button>
+            </th>
         </tr>
         </thead>
         <tbody>
-        {% for fornecedor in fornecedores %}
+        {% for fornecedor in fornecedor %}
             <tr>
                 <th scope="row"><a href="{% url 'update_fornecedor' fornecedor.id %}">{{ fornecedor.nome }}</a></th>
-                <td>{{ fornecedor.nome }}</td>
                 <td>{{ fornecedor.fantasia }}</td>
                 <td>{{ fornecedor.rede }}</td>
+                <td>{{ fornecedor.produtos }}</td>
                 <td>{{ fornecedor.ativo }}</td>
                 <td>
 

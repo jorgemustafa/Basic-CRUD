@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import POSFilter
 from .models import POS
 from .forms import PostoForm
 
@@ -7,7 +8,11 @@ from .forms import PostoForm
 @login_required
 def list_posto(request):
     posto = POS.objects.all()
-    return render(request, 'posto.html', {'postos': posto})
+
+    myFilter = POSFilter(request.GET, queryset=posto)
+    posto = myFilter.qs
+
+    return render(request, 'posto.html', {'postos': posto, 'myFilter': myFilter})
 
 
 @login_required

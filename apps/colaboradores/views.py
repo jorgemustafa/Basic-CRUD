@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import ColaboradorFilter
 from .forms import ColaboradorForm
 from .models import Colaborador
 
@@ -7,7 +8,11 @@ from .models import Colaborador
 @login_required
 def list_colaborador(request):
     colaborador = Colaborador.objects.all()
-    return render(request, 'colaborador.html', {'colaborador': colaborador})
+
+    myFilter = ColaboradorFilter(request.GET, queryset=colaborador)
+    colaborador = myFilter.qs
+
+    return render(request, 'colaborador.html', {'colaborador': colaborador, 'myFilter': myFilter})
 
 
 @login_required

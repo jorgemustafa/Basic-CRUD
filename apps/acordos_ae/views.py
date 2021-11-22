@@ -1,14 +1,19 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.acordos_ae.models import AcordoAereo
+from .filters import AcordoFilter
 from .forms import AcordoForm, AcordoFormGol
 from ..fornecedores.models import Fornecedor
 
 
 @login_required
 def list_acordo(request):
-    acordo = AcordoAereo.objects.all()
-    return render(request, 'acordos.html', {'acordo': acordo})
+    acordos = AcordoAereo.objects.all()
+
+    myFilter = AcordoFilter(request.GET, queryset=acordos)
+    acordos = myFilter.qs
+
+    return render(request, 'acordos.html', {'acordos': acordos, 'myFilter': myFilter})
 
 
 def new_acordo(request, pk):

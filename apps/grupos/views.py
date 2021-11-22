@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import GrupoFilter
 from .forms import GrupoForm
 from .models import Grupo
 
@@ -7,7 +8,11 @@ from .models import Grupo
 @login_required
 def list_grupo(request):
     grupo = Grupo.objects.all()
-    return render(request, 'grupo.html', {'grupo': grupo})
+
+    myFilter = GrupoFilter(request.GET, queryset=grupo)
+    grupo = myFilter.qs
+
+    return render(request, 'grupo.html', {'grupo': grupo, 'myFilter': myFilter})
 
 
 @login_required

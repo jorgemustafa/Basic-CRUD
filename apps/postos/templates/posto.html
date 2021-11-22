@@ -1,24 +1,49 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block main %}
 
-     <h4 class="h4 mb-4 text-gray-800">POS</h4>
+    <h4 class="h4 mb-4 text-gray-800">POS</h4>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Filtre sua pesquisa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="get">
+                        {{ myFilter.form|crispy }}
+                        <button class="btn btn-primary" type="submit">Filtrar</button>
+                        <a href="{% url 'list_posto' %}" style="font-size: x-small">Limpar Filtros</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <table class="table">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Código POS</th>
             <th scope="col">Nome POS</th>
+            <th scope="col">Código POS</th>
             <th scope="col">Ativo</th>
-            <th scope="col"></th>
-        </tr>
+            <th scope="col">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
+                        data-bs-target="#Modal">
+                    Filtros
+                </button>
+            </th>
         </thead>
         <tbody>
         {% for posto in postos %}
             <tr>
                 <th scope="row"><a href="{% url 'update_posto' posto.id %}">{{ posto.nome }}</a></th>
-                <td>{{ posto.nome }}</td>
-                <td>{{ posto.ativo}}</td>
+                <td>{{ posto.codigo }}</td>
+                <td>{{ posto.ativo }}</td>
                 <td>
                     <a href="{% url 'delete_posto' posto.id %}"><i class="bi bi-trash"></i></a>
                 </td>

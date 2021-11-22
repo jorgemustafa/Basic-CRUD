@@ -1,13 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import ClienteFilter
 from .forms import ClienteForm
 from .models import Cliente
 
 
 @login_required
 def list_cliente(request):
-    cliente = Cliente.objects.all()
-    return render(request, 'clientes.html', {'cliente': cliente})
+    clientes = Cliente.objects.all()
+
+    myFilter = ClienteFilter(request.GET, queryset=clientes)
+    clientes = myFilter.qs
+
+    return render(request, 'clientes.html', {'clientes': clientes, 'myFilter': myFilter})
 
 
 @login_required

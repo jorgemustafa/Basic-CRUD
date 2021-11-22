@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
+{%  load crispy_forms_tags %}
 
 {% block main %}
 
     <h4 class="h4 mb-4 text-gray-800">Fee's</h4>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Filtre sua pesquisa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="get">
+                        {{ myFilter.form|crispy }}
+                        <button class="btn btn-primary" type="submit">Filtrar</button>
+                        <a href="{% url 'list_fee' %}" style="font-size: x-small">Limpar Filtros</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <table class="table">
         <thead class="thead-light">
@@ -38,7 +58,13 @@
             <th scope="col">Demais</th>
             <th scope="col">Renovação</th>
             <th scope="col">Ativo</th>
-            <th scope="col"></th>
+            <th scope="col">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
+                        data-bs-target="#Modal">
+                    Filtros
+                </button>
+            </th>
         </tr>
         </thead>
         <tbody>

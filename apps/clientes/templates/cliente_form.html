@@ -6,12 +6,15 @@
     <h4 class="h4 mb-4 text-gray-800">Novo Cliente</h4>
 
     <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }} <br>
+            {% csrf_token %}
+            {{ form|crispy }} <br>
+
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form> <br>
     <a href="{% url 'list_cliente' %}">
         <button class="btn btn-primary">Voltar</button>
     </a>
 
+
 {% endblock %}
+

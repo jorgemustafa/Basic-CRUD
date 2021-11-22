@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .filters import TarifarioFilter
 from .models import Tarifario
 from .forms import TarifarioForm
 
@@ -7,7 +8,11 @@ from .forms import TarifarioForm
 @login_required
 def list_tarifario(request):
     tarifario = Tarifario.objects.all()
-    return render(request, 'tarifario.html', {'tarifario': tarifario})
+
+    myFilter = TarifarioFilter(request.GET, queryset=tarifario)
+    tarifario = myFilter.qs
+
+    return render(request, 'tarifario.html', {'tarifario': tarifario, 'myFilter': myFilter})
 
 
 @login_required
