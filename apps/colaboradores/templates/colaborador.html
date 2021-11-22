@@ -1,6 +1,8 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block main %}
+
+    <h4 class="h4 mb-4 text-gray-800">Colaboradores</h4>
 
     <table class="table">
         <thead class="thead-light">
@@ -12,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for colaborador in colaboradores %}
+        {% for colaborador in colaborador %}
             <tr>
                 <th scope="row"><a href="{% url 'update_colaborador' colaborador.id %}">{{ colaborador.nome }}</a></th>
                 <td>{{ colaborador.email }}</td>

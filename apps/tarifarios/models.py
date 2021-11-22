@@ -11,9 +11,9 @@ class Tarifario(models.Model):
     fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE, verbose_name='Fornecedor')
     pos = models.ForeignKey(POS, on_delete=models.CASCADE, verbose_name='POS')
     tipoQuarto = models.CharField('Tipo de Apartamento', max_length=3)
-    tarifaQualif = models.BooleanField('Se a Tarifa é Qualificada com o Fornecedor', default=False)
     diaria = models.IntegerField('Valor da Diária')
     taxa = models.IntegerField('Valor das Taxas')
+    tarifaQualif = models.BooleanField('Se a Tarifa é Qualificada com o Fornecedor', default=False)
     tarifaAcordo = models.BooleanField('Tarifa Acordo', default=False)
     tarifaFlut = models.BooleanField('Tarifa Flutuante', default=False)
     validade = models.DateField('Vencimento da Tarifa')
@@ -22,7 +22,7 @@ class Tarifario(models.Model):
     ativo = models.BooleanField('Ativo', default=True)
 
     def __int__(self):
-        return self.cliente
+        return self.nome
 
     class Meta:
         verbose_name = 'Tarifário'

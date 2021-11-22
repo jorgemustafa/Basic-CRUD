@@ -11,7 +11,7 @@ class Produto(models.Model):
     ativo = models.BooleanField('Ativo', default=True)
 
     def __str__(self):
-        return self.nome + ' | ' + self.codigo
+        return self.nome
 
     class Meta:
         verbose_name = 'Produto'

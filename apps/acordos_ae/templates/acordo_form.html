@@ -1,13 +1,29 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block main %}
+    <h4 class="h4 mb-4 text-gray-800">Novo Acordo</h4>
 
-   <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }} <br>
-        <button type="submit" class ="btn btn-primary">Salvar</button>
-   </form> <br>
-        <a href="{% url 'list_acordo' %}"><button class ="btn btn-primary">Voltar</button></a>
-
+        {{ form|crispy }} <br>
+<!--        {{ form.cliente }} <br>-->
+<!--        {{ form.grupos }} <br>-->
+<!--        {{ form.fornecedores }} <br>-->
+<!--        {{fornecedor}}-->
+<!--        {{ form.oac }} <br>-->
+<!--        {{ form.postos }} <br>-->
+<!--        {{ form.acordo }} <br>-->
+<!--        {{ form.validade }} <br>-->
+<!--        {{ form.desconto }} <br>-->
+<!--        {{ form.destino }} <br>-->
+<!--        {{ form.continente }} <br>-->
+<!--        {{ form.inclusao }} <br>-->
+<!--        {{ form.user }} <br>-->
+<!--        {{ form.ativo }} <br>-->
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form> <br>
+    <a href="{% url 'list_acordo' %}">
+        <button class="btn btn-primary">Voltar</button>
+    </a>
 {% endblock %}
-

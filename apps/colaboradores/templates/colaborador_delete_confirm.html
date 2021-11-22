@@ -2,7 +2,7 @@
 
 {% block main %}
 
-   <h1>Tem certeza que deseja deletar {{ colaborador }}?</h1>
+       <h4 class="h4 mb-4 text-gray-800">Tem certeza que deseja deletar o colaborador {{ colaborador }}?</h4>
 
    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} <br>

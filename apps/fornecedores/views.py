@@ -1,12 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import FornecedorForm
 from .models import Fornecedor
 
 
+@login_required
 def list_fornecedor(request):
     fornecedor = Fornecedor.objects.all()
     return render(request, 'fornecedor.html', {'fornecedores': fornecedor})
 
+
+@login_required
 def new_fornecedor(request):
     form = FornecedorForm(request.POST or None)
 
@@ -15,6 +19,8 @@ def new_fornecedor(request):
         return redirect('list_fornecedor')
     return render(request, 'fornecedor_form.html', {'form': form})
 
+
+@login_required
 def update_fornecedor(request, id):
     fornecedor = get_object_or_404(Fornecedor, pk=id)
     form = FornecedorForm(request.POST or None, instance=fornecedor)
@@ -24,6 +30,8 @@ def update_fornecedor(request, id):
         return redirect('list_fornecedor')
     return render(request, 'fornecedor_form.html', {'form': form})
 
+
+@login_required
 def delete_fornecedor(request, id):
     fornecedor = get_object_or_404(Fornecedor, pk=id)
     form = FornecedorForm(request.POST or None, instance=fornecedor)

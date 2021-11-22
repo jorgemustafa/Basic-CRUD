@@ -1,11 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import GrupoForm
 from .models import Grupo
 
+
+@login_required
 def list_grupo(request):
     grupo = Grupo.objects.all()
     return render(request, 'grupo.html', {'grupo': grupo})
 
+
+@login_required
 def new_grupo(request):
     form = GrupoForm(request.POST or None)
 
@@ -14,6 +19,8 @@ def new_grupo(request):
         return redirect('list_grupo')
     return render(request, 'grupo_form.html', {'form': form})
 
+
+@login_required
 def update_grupo(request, id):
     grupo = get_object_or_404(Grupo, pk=id)
     form = GrupoForm(request.POST or None, instance=grupo)
@@ -23,6 +30,8 @@ def update_grupo(request, id):
         return redirect('list_grupo')
     return render(request, 'grupo_form.html', {'form': form})
 
+
+@login_required
 def delete_grupo(request, id):
     grupo = get_object_or_404(Grupo, pk=id)
     form = GrupoForm(request.POST or None, instance=grupo)

@@ -12,6 +12,7 @@ class AcordoAereo(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Nome do Cliente')
     grupos = models.ForeignKey(Grupo, on_delete=models.CASCADE, verbose_name='Grupo do Cliente')
     fornecedores = models.ForeignKey(Fornecedor, on_delete=models.CASCADE, verbose_name='Fornecedor')
+    oac = models.CharField('OAC', max_length=10, null=True)
     postos = models.ForeignKey(POS, on_delete=models.CASCADE, verbose_name='POS')
     acordo = models.CharField('Código do Acordo do Cliente', max_length=50)
     validade = models.DateField('Validade do Acordo do Cliente')
@@ -35,6 +36,7 @@ class AcordoAereo(models.Model):
 
     def __str__(self):
         return self.acordo
+
 
     class Meta:
         verbose_name = 'Acordo Aéreo'
