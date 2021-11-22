@@ -11,29 +11,21 @@ def list_acordo(request):
     return render(request, 'acordos.html', {'acordo': acordo})
 
 
-@login_required
-def new_acordo(request, fornecedor):
-# def new_acordo(request, fornecedor, pk):
+def new_acordo(request, pk):
 
-    # formteste = get_object_or_404(Fornecedor, pk=pk)
+    fornecedor = Fornecedor.objects.get(pk=pk)
 
-    if fornecedor == 'gol':
+    if fornecedor.nome == 'Gol':
         form = AcordoFormGol(request.POST or None)
-        print('Forn É GOL!')
 
     else:
         form = AcordoForm(request.POST or None)
-        print('Forn não é GOL')
-
-    form.fornecedores = fornecedor
 
     if form.is_valid():
+        form.instance.fornecedores_id=fornecedor.id
         form.save()
-        print('Form é Válido')
         return redirect('list_acordo')
 
-    print('Form Invalido')
-    # return render(request, 'acordo_form.html', {'form': form, 'fornecedor': fornecedor, 'formteste': formteste})
     return render(request, 'acordo_form.html', {'form': form, 'fornecedor': fornecedor})
 
 
