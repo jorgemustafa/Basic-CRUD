@@ -5,9 +5,7 @@ from .models import Grupo
 class GrupoForm(ModelForm):
     class Meta:
         model = Grupo
-        fields = ['nome', 'cod', 'inclusao', 'user', 'ativo']
+        fields = ['nome', 'cod', 'inclusao', 'ativo']
         widgets = {
             'inclusao': forms.HiddenInput,
-            'ativo': forms.HiddenInput,
-            # 'user': forms.HiddenInput
         }

@@ -20,14 +20,15 @@ def new_tarifario(request):
     form = TarifarioForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.user = request.user
         form.save()
         return redirect('list_tarifario')
     return render(request, 'tarifario_form.html', {'form': form})
 
 
 @login_required
-def update_tarifario(request, id):
-    tarifario = get_object_or_404(Tarifario, pk=id)
+def update_tarifario(request, pk):
+    tarifario = get_object_or_404(Tarifario, pk=pk)
     form = TarifarioForm(request.POST or None, instance=tarifario)
 
     if form.is_valid():
@@ -37,8 +38,8 @@ def update_tarifario(request, id):
 
 
 @login_required
-def delete_tarifario(request, id):
-    tarifario = get_object_or_404(Tarifario, pk=id)
+def delete_tarifario(request, pk):
+    tarifario = get_object_or_404(Tarifario, pk=pk)
     form = TarifarioForm(request.POST or None, instance=tarifario)
 
     if request.method == 'POST':

@@ -28,7 +28,8 @@ class Tarifario(models.Model):
     ativo = models.BooleanField('Ativo', default=True)
 
     def __str__(self):
-        return self.cliente
+        return self.cliente.nome
+
 
     class Meta:
         verbose_name_plural = 'Tarifários'

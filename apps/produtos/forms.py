@@ -5,9 +5,7 @@ from .models import Produto
 class ProdutoForm(ModelForm):
     class Meta:
         model = Produto
-        fields = [ 'nome', 'codigo', 'inclusao', 'user', 'ativo']
+        fields = ['nome', 'codigo', 'inclusao', 'ativo']
         widgets = {
             'inclusao': forms.HiddenInput,
-            'ativo': forms.HiddenInput,
-            # 'user': forms.HiddenInput
         }

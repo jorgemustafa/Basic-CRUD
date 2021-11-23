@@ -8,4 +8,4 @@ class ClienteFilter(django_filters.FilterSet):
 
     class Meta:
         model = Cliente
-        fields = ['executivo']
+        fields = ['executivo', 'postos']

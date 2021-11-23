@@ -20,14 +20,15 @@ def new_colaborador(request):
     form = ColaboradorForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.user = request.user
         form.save()
         return redirect('list_colaborador')
     return render(request, 'colaborador_form.html', {'form': form})
 
 
 @login_required
-def update_colaborador(request, id):
-    colaborador = get_object_or_404(Colaborador, pk=id)
+def update_colaborador(request, pk):
+    colaborador = get_object_or_404(Colaborador, pk=pk)
     form = ColaboradorForm(request.POST or None, instance=colaborador)
 
     if form.is_valid():
@@ -37,8 +38,8 @@ def update_colaborador(request, id):
 
 
 @login_required
-def delete_colaborador(request, id):
-    colaborador = get_object_or_404(Colaborador, pk=id)
+def delete_colaborador(request, pk):
+    colaborador = get_object_or_404(Colaborador, pk=pk)
     form = ColaboradorForm(request.POST or None, instance=colaborador)
 
     if request.method == 'POST':

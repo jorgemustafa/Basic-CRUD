@@ -20,14 +20,15 @@ def new_fornecedor(request):
     form = FornecedorForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.user = request.user
         form.save()
         return redirect('list_fornecedor')
     return render(request, 'fornecedor_form.html', {'form': form})
 
 
 @login_required
-def update_fornecedor(request, id):
-    fornecedor = get_object_or_404(Fornecedor, pk=id)
+def update_fornecedor(request, pk):
+    fornecedor = get_object_or_404(Fornecedor, pk=pk)
     form = FornecedorForm(request.POST or None, instance=fornecedor)
 
     if form.is_valid():
@@ -37,8 +38,8 @@ def update_fornecedor(request, id):
 
 
 @login_required
-def delete_fornecedor(request, id):
-    fornecedor = get_object_or_404(Fornecedor, pk=id)
+def delete_fornecedor(request, pk):
+    fornecedor = get_object_or_404(Fornecedor, pk=pk)
     form = FornecedorForm(request.POST or None, instance=fornecedor)
 
     if request.method == 'POST':

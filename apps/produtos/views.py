@@ -20,14 +20,15 @@ def new_produto(request):
     form = ProdutoForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.user = request.user
         form.save()
         return redirect('list_produto')
     return render(request, 'produto_form.html', {'form': form})
 
 
 @login_required
-def update_produto(request, id):
-    produto = get_object_or_404(Produto, pk=id)
+def update_produto(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
     form = ProdutoForm(request.POST or None, instance=produto)
 
     if form.is_valid():
@@ -37,8 +38,8 @@ def update_produto(request, id):
 
 
 @login_required
-def delete_produto(request, id):
-    produto = get_object_or_404(Produto, pk=id)
+def delete_produto(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
     form = ProdutoForm(request.POST or None, instance=produto)
 
     if request.method == 'POST':

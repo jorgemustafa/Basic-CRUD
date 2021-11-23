@@ -1,4 +1,3 @@
-from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.acordos_ae.models import AcordoAereo
@@ -16,7 +15,7 @@ def list_acordo(request):
 
     return render(request, 'acordos.html', {'acordos': acordos, 'myFilter': myFilter})
 
-
+@login_required
 def new_acordo(request, pk):
     fornecedor = Fornecedor.objects.get(pk=pk)
 
@@ -29,7 +28,7 @@ def new_acordo(request, pk):
 
     if form.is_valid():
         form.instance.fornecedores_id = fornecedor.id
-        # form.instance.inclusao = datetime.now()
+        form.instance.user = request.user
         form.save()
         return redirect('list_acordo')
 
@@ -37,8 +36,8 @@ def new_acordo(request, pk):
 
 
 @login_required
-def update_acordo(request, id):
-    acordo = get_object_or_404(AcordoAereo, pk=id)
+def update_acordo(request, pk):
+    acordo = get_object_or_404(AcordoAereo, pk=pk)
     form = AcordoForm(request.POST or None, instance=acordo)
 
     if form.is_valid():
@@ -48,8 +47,8 @@ def update_acordo(request, id):
 
 
 @login_required
-def delete_acordo(request, id):
-    acordo = get_object_or_404(AcordoAereo, pk=id)
+def delete_acordo(request, pk):
+    acordo = get_object_or_404(AcordoAereo, pk=pk)
     form = AcordoForm(request.POST or None, instance=acordo)
 
     if request.method == 'POST':
@@ -57,7 +56,7 @@ def delete_acordo(request, id):
         return redirect('list_acordo')
     return render(request, 'acordo_delete_confirm.html', {'acordo': acordo})
 
-
+@login_required
 def select_fornecedor(request):
     fornecedor = Fornecedor.objects.all()
     return render(request, 'select_fornecedor.html', {'fornecedor': fornecedor})

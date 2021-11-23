@@ -20,14 +20,15 @@ def new_posto(request):
     form = PostoForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.user = request.user
         form.save()
         return redirect('list_posto')
     return render(request, 'posto_form.html', {'form': form})
 
 
 @login_required
-def update_posto(request, id):
-    posto = get_object_or_404(POS, pk=id)
+def update_posto(request, pk):
+    posto = get_object_or_404(POS, pk=pk)
     form = PostoForm(request.POST or None, instance=posto)
 
     if form.is_valid():
@@ -37,8 +38,8 @@ def update_posto(request, id):
 
 
 @login_required
-def delete_posto(request, id):
-    posto = get_object_or_404(POS, pk=id)
+def delete_posto(request, pk):
+    posto = get_object_or_404(POS, pk=pk)
     form = PostoForm(request.POST or None, instance=posto)
 
     if request.method == 'POST':

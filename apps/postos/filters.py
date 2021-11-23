@@ -1,6 +1,5 @@
 import django_filters
 from django_filters import CharFilter
-from .models import POS
 
 
 class POSFilter(django_filters.FilterSet):

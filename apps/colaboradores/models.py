@@ -11,7 +11,6 @@ class Colaborador(models.Model):
     ativo = models.BooleanField('Ativo', default=True)
 
     class Meta:
-        verbose_name = 'Colaborador'
         verbose_name_plural = 'Colaboradores'
         ordering = [
             'nome'

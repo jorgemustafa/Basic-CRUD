@@ -6,10 +6,8 @@ from .models import Colaborador
 class ColaboradorForm(ModelForm):
     class Meta:
         model = Colaborador
-        fields = ['nome', 'email', 'inclusao', 'user', 'ativo']
+        fields = ['nome', 'email', 'inclusao', 'ativo']
         widgets = {
             'email': forms.EmailInput(attrs={'type':'email', 'placeholder':'nome@tourhouse.com.br'}),
             'inclusao': forms.HiddenInput,
-            'ativo': forms.HiddenInput,
-            # 'user': forms.HiddenInput,
         }

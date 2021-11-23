@@ -20,14 +20,15 @@ def new_cliente(request):
     form = ClienteForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.user = request.user
         form.save()
         return redirect('list_cliente')
     return render(request, 'cliente_form.html', {'form': form})
 
 
 @login_required
-def update_cliente(request, id):
-    cliente = get_object_or_404(Cliente, pk=id)
+def update_cliente(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
     form = ClienteForm(request.POST or None, instance=cliente)
 
     if form.is_valid():
@@ -37,8 +38,8 @@ def update_cliente(request, id):
 
 
 @login_required
-def delete_cliente(request, id):
-    cliente = get_object_or_404(Cliente, pk=id)
+def delete_cliente(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
     form = ClienteForm(request.POST or None, instance=cliente)
 
     if request.method == 'POST':
