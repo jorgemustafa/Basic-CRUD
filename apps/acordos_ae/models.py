@@ -31,15 +31,15 @@ class AcordoAereo(models.Model):
     ]
     continente = models.CharField('Nome dos Continentes', max_length=2, choices=continente_choices)
     inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
+    # inclusao = models.DateTimeField('Inclusão', auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
 
     def __str__(self):
-        return self.acordo
+        return '{} | {}'.format(self.acordo, self.cliente)
 
 
     class Meta:
-        verbose_name = 'Acordo Aéreo'
         verbose_name_plural = 'Acordos Aéreos'
         ordering = [
             'acordo'

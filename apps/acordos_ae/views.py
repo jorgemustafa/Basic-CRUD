@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.acordos_ae.models import AcordoAereo
@@ -17,17 +18,18 @@ def list_acordo(request):
 
 
 def new_acordo(request, pk):
-
     fornecedor = Fornecedor.objects.get(pk=pk)
 
     if fornecedor.nome == 'Gol':
+        # form = AcordoFormGol(request.POST or None, initial={'inclusao': datetime.now()})
         form = AcordoFormGol(request.POST or None)
 
     else:
         form = AcordoForm(request.POST or None)
 
     if form.is_valid():
-        form.instance.fornecedores_id=fornecedor.id
+        form.instance.fornecedores_id = fornecedor.id
+        # form.instance.inclusao = datetime.now()
         form.save()
         return redirect('list_acordo')
 

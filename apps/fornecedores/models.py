@@ -14,7 +14,6 @@ class Fornecedor(models.Model):
     ativo = models.BooleanField('Ativo', default=True)
 
     class Meta:
-        verbose_name = 'Fornecedor'
         verbose_name_plural = 'Fornecedores'
         ordering = [
             'nome'

@@ -14,7 +14,6 @@ class Grupo(models.Model):
         return self.nome
 
     class Meta:
-        verbose_name = 'Grupo'
         verbose_name_plural = 'Grupos'
         ordering = [
             'nome'

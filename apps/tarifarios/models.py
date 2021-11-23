@@ -10,7 +10,13 @@ class Tarifario(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
     fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE, verbose_name='Fornecedor')
     pos = models.ForeignKey(POS, on_delete=models.CASCADE, verbose_name='POS')
-    tipoQuarto = models.CharField('Tipo de Apartamento', max_length=3)
+    tipoQuarto_choices = [
+        ('SGL', 'Single'),
+        ('DOB', 'Double'),
+        ('TRP', 'Triple'),
+        ('QUP', 'Quadruple'),
+    ]
+    tipoQuarto = models.CharField('Tipo de Apartamento', max_length=3, choices=tipoQuarto_choices)
     diaria = models.IntegerField('Valor da Diária')
     taxa = models.IntegerField('Valor das Taxas')
     tarifaQualif = models.BooleanField('Se a Tarifa é Qualificada com o Fornecedor', default=False)
@@ -21,11 +27,10 @@ class Tarifario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
 
-    def __int__(self):
-        return self.nome
+    def __str__(self):
+        return self.cliente
 
     class Meta:
-        verbose_name = 'Tarifário'
         verbose_name_plural = 'Tarifários'
         ordering = [
             'cliente'

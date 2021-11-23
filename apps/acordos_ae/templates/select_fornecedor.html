@@ -3,7 +3,7 @@
 {% block main %}
     <h4 class="h4 mb-4 text-gray-800"> Selecione abaixo um fornecedor para cadastrar um Acordo:</h4>
     <div id="list-example" class="list-group">
-        {% for fornecedor in fornecedores %}
+        {% for fornecedor in fornecedor %}
             <a class="list-group-item list-group-item-action"
                href="{% url 'new_acordo' fornecedor.id %}">{{ fornecedor }}</a>
         {% endfor %}

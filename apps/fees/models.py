@@ -39,8 +39,10 @@ class Fee(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
 
+    def __str__(self):
+        return 'Fee de {}'.format(self.cliente)
+
     class Meta:
-        verbose_name = 'Fee'
         verbose_name_plural = 'Fees'
         ordering = [
             'id'

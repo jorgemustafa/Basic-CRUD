@@ -7,3 +7,4 @@ def home(request):
     data = {}
     data['usuario'] = request.user
     return render(request, 'base.html', data)
+

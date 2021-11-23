@@ -29,7 +29,6 @@ class Cliente(models.Model):
         return self.nome
 
     class Meta:
-        verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
         ordering = [
             'nome'
