@@ -6,7 +6,4 @@ from .models import Fornecedor
 class FornecedorForm(ModelForm):
     class Meta:
         model = Fornecedor
-        fields = ['nome', 'fantasia', 'rede', 'produtos', 'inclusao', 'ativo']
-        widgets = {
-            'inclusao': forms.HiddenInput,
-        }
+        fields = ['nome', 'fantasia', 'rede', 'produtos', 'ativo']

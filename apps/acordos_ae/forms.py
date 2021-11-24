@@ -7,11 +7,10 @@ class AcordoForm(ModelForm):
     class Meta:
         model = AcordoAereo
         fields = ['acordo', 'cliente', 'grupos', 'postos', 'validade', 'desconto', 'destino',
-                  'continente', 'inclusao', 'ativo']
+                  'continente', 'ativo']
         widgets = {
             'validade': forms.TextInput(attrs={'type': 'date'}),
             'desconto': forms.NumberInput(attrs={'placeholder': '%'}),
-            'inclusao': forms.HiddenInput,
         }
 
 
@@ -19,9 +18,8 @@ class AcordoFormGol(ModelForm):
     class Meta:
         model = AcordoAereo
         fields = ['cliente', 'grupos', 'postos', 'acordo', 'validade', 'desconto', 'destino',
-                  'continente', 'inclusao', 'oac', 'ativo']
+                  'continente',  'oac', 'ativo']
         widgets = {
             'validade': forms.DateInput(attrs={'type': 'date'}),
             'desconto': forms.NumberInput(attrs={'placeholder': '%'}),
-            'inclusao': forms.HiddenInput,
         }

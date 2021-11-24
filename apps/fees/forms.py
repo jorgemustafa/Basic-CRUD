@@ -10,7 +10,7 @@ class FeeForm(ModelForm):
                   'aenacoff', 'aeintoff', 'honacoff', 'hointoff', 'canacoff', 'caintoff', 'vip',
                   'doc', 'fer', 'emergencial', 'ateae', 'segViagem', 'passRod', 'reembolso',
                   'cancelamento', 'assentoConf', 'implantacao', 'treinamento', 'consultoria',
-                  'expense', 'eventos', 'demais', 'renovacao', 'inclusao', 'ativo']
+                  'expense', 'eventos', 'demais', 'renovacao', 'ativo']
         widgets = {
             'aenacon': forms.NumberInput(attrs={'placeholder': 'R$'}),
             'aeinton': forms.NumberInput(attrs={'placeholder': 'R$'}),
@@ -41,5 +41,4 @@ class FeeForm(ModelForm):
             'eventos': forms.NumberInput(attrs={'placeholder': 'R$'}),
             'demais': forms.NumberInput(attrs={'placeholder': 'R$'}),
             'renovacao': forms.TextInput(attrs={'type': 'date'}),
-            'inclusao': forms.HiddenInput,
         }

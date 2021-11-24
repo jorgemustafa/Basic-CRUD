@@ -1,4 +1,3 @@
-import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from apps.clientes.models import Cliente
@@ -30,8 +29,8 @@ class AcordoAereo(models.Model):
         ('AS', 'Ásia'),
     ]
     continente = models.CharField('Nome dos Continentes', max_length=2, choices=continente_choices)
-    inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
-    # inclusao = models.DateTimeField('Inclusão', auto_now_add=True)
+    inclusao = models.DateTimeField('Inclusão', auto_now_add=True)
+    edicao = models.DateTimeField('Edição', auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
 

@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 class POS(models.Model):
     codigo = models.CharField('Codigo do Ponto de Atendimento', max_length=30)
     nome = models.CharField('Nome do Ponto de Atendimento', max_length=60)
-    inclusao = models.DateTimeField('Inclusão', default=datetime.datetime.now())
+    inclusao = models.DateTimeField('Inclusão', auto_now_add=True)
+    edicao = models.DateTimeField('Edição', auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
     ativo = models.BooleanField('Ativo', default=True)
 
