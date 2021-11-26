@@ -392,7 +392,7 @@
 
         <!-- Page Heading -->
         {% block main %}
-            <h1 class="h3 mb-4 text-gray-800">Olá {{ usuario }}</h1>
+            <h1 class="h3 mb-4 text-gray-800">Olá {{ usuario.first_name }} {{ usuario.last_name }}</h1>
             <h4 class="h4 mb-4 text-gray-800"> Seja bem-vindo ao novo Diretório TH, armazene as informações dos
                 clientes e as tenha em mãos rapidamente!</h4>
         {% endblock %}
@@ -448,6 +448,7 @@
 {#                    {% endif %}#}
                     <button class="btn btn-danger" type="submit">Sair</button>
                 </form>
+            </div>
             </div>
         </div>
     </div>
