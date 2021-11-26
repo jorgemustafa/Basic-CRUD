@@ -73,7 +73,7 @@ $rfs-breakpoint-unit-cache: unit($rfs-breakpoint);
     font-size: #{$fs}#{$rfs-suffix};
   }
   @else {
-    // Variables for storing static and fluid rescaling
+    // Variables for storing staticfiles and fluid rescaling
     $rfs-static: null;
     $rfs-fluid: null;
 
@@ -124,7 +124,7 @@ $rfs-breakpoint-unit-cache: unit($rfs-breakpoint);
 
     // Rendering
     @if $rfs-fluid == null {
-      // Only render static font-size if no fluid font-size is available
+      // Only render staticfiles font-size if no fluid font-size is available
       font-size: $rfs-static;
     }
     @else {

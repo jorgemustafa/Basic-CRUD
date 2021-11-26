@@ -1744,7 +1744,7 @@
 
     // .offsetParent will return the closest TH, TD or TABLE in case
     // no offsetParent is present, I hate this job...
-    if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'staticfiles') {
       return getOffsetParent(offsetParent);
     }
 
@@ -3048,7 +3048,7 @@
    * - `bottom` (on bottom, centered)
    * - `auto-end` (on the side with more space available, alignment depends by placement)
    *
-   * @static
+   * @staticfiles
    * @type {Array}
    * @enum {String}
    * @readonly
@@ -3924,7 +3924,7 @@
    * })
    * ```
    * @type {Object}
-   * @static
+   * @staticfiles
    * @memberof Popper
    */
   var Defaults = {
@@ -4107,7 +4107,7 @@
        * and will be removed in v2! Use the PopperUtils module directly instead.
        * Due to the high instability of the methods contained in Utils, we can't
        * guarantee them to follow semver. Use them at your own risk!
-       * @static
+       * @staticfiles
        * @private
        * @type {Object}
        * @deprecated since version 1.8
@@ -4183,7 +4183,7 @@
   var CLASS_NAME_DROPRIGHT = 'dropright';
   var CLASS_NAME_DROPLEFT = 'dropleft';
   var CLASS_NAME_MENURIGHT = 'dropdown-menu-right';
-  var CLASS_NAME_POSITION_STATIC = 'position-static';
+  var CLASS_NAME_POSITION_STATIC = 'position-staticfiles';
   var SELECTOR_DATA_TOGGLE$2 = '[data-toggle="dropdown"]';
   var SELECTOR_FORM_CHILD = '.dropdown form';
   var SELECTOR_MENU = '.dropdown-menu';
@@ -4290,7 +4290,7 @@
           if (typeof this._config.reference.jquery !== 'undefined') {
             referenceElement = this._config.reference[0];
           }
-        } // If boundary is not `scrollParent`, then set position to `static`
+        } // If boundary is not `scrollParent`, then set position to `staticfiles`
         // to allow the menu to "escape" the scroll parent's boundaries
         // https://github.com/twbs/bootstrap/issues/24251
 
@@ -4445,9 +4445,9 @@
             boundariesElement: this._config.boundary
           }
         }
-      }; // Disable Popper if we have a static display
+      }; // Disable Popper if we have a staticfiles display
 
-      if (this._config.display === 'static') {
+      if (this._config.display === 'staticfiles') {
         popperConfig.modifiers.applyStyle = {
           enabled: false
         };
@@ -4702,7 +4702,7 @@
   var CLASS_NAME_OPEN = 'modal-open';
   var CLASS_NAME_FADE$1 = 'fade';
   var CLASS_NAME_SHOW$3 = 'show';
-  var CLASS_NAME_STATIC = 'modal-static';
+  var CLASS_NAME_STATIC = 'modal-staticfiles';
   var SELECTOR_DIALOG = '.modal-dialog';
   var SELECTOR_MODAL_BODY = '.modal-body';
   var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="modal"]';
@@ -5047,7 +5047,7 @@
             return;
           }
 
-          if (_this9._config.backdrop === 'static') {
+          if (_this9._config.backdrop === 'staticfiles') {
             _this9._triggerBackdropTransition();
           } else {
             _this9.hide();

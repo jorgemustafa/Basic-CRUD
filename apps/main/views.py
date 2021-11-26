@@ -6,5 +6,4 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     data = {}
     data['usuario'] = request.user
-    return render(request, 'base.html', data)
-
+    return render(request, 'index.html', data)

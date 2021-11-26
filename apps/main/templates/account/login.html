@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block main %}
+
+    <div class="text-center">
+        <div class="socialaccount_ballot">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <div class="row">
+                <img src="{% static 'img\logoth.png' %}" class="img-fluid" alt="logo-th">
+                {{ form|crispy }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <div class="col-md-6">
+                    <button class="btn btn-outline-success btn-form" type="submit">{% trans "Sign In" %}</button>
+                    {#                    <a class="button secondaryAction text-dark text-center"#}
+                    {#                       href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>#}
+                </div>
+                <div class="col-md-6">
+                    <p>{% include "socialaccount/snippets/provider_list.html" with process="login" %}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    {##}
+    {##}
+    {#    <div class="form-group">#}
+    {#        <form method="POST">#}
+    {#            {% csrf_token %}#}
+    {#            <div class="container">#}
+    {#                <div class="login">#}
+    {#                    <div class="row">#}
+    {#                        <img src="{% static 'img\logoth.png' %}" class="img-fluid" alt="logo-th">#}
+    {#                        <div class="col-md-12">#}
+    {#                            <label for="username">Usuário</label>#}
+    {#                            <input type="text" class="form-control" name="username">#}
+    {#                            <br>#}
+    {#                            <label for="password">Senha</label>#}
+    {#                            <input type="password" class="form-control" name="password">#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                    <div class="col-md-6">#}
+    {#                        <button class="primaryAction mt-3 btn btn-dark" type="submit">{% trans "Sign In" %}</button>#}
+    {#                    </div>#}
+    {#                    <div class="col-md-6">#}
+    {#                        <button class="btn-primary" href="{% provider_login_url "google" %}">Login com o Google</button>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {##}
+    {#        </form>#}
+    {#    </div>#}
+
+
+
+
+{% endblock %}
