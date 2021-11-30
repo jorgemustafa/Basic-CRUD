@@ -1,0 +1,23 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="alert alert-primary" role="alert" style="color: lightgray; background-color: #003D68;
+border-color: #003D68;position: relative; padding: 0.75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent;
+  border-radius: 0.35rem;">
+
+{#    <img src="{% static 'img\logo-th.png' %}" alt="logo-th">#}
+    <h3>Olá {{ acordo.cliente.executivo.nome }}</h3>
+    <p>O acordo {{ acordo.acordo }} do cliente {{ acordo.cliente }} vence em {{ acordo.validade }}</p>
+
+</div>
+</body>
+</html>

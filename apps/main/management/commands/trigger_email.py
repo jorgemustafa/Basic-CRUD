@@ -1,8 +1,12 @@
 from datetime import date, timedelta
+from urllib import request
+
 from django.conf import settings
-from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
 from apps.acordos_ae.models import AcordoAereo
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 
 class Command(BaseCommand):
@@ -14,13 +18,23 @@ class Command(BaseCommand):
 
         for acordo in acordos:
             if data_venc >= acordo.validade:
-                send_mail('Vencimento do acordo {} está próximo'.format(acordo.acordo),
-                          'O acordo {} do cliente {}, vence em {}, '
-                          'favor deixar no radar'.format(
-                              acordo.acordo,
-                              acordo.cliente,
-                              acordo.validade.strftime('%d/%m/%Y')
-                          ),
-                          settings.EMAIL_HOST_USER,
-                          [acordo.cliente.executivo.email],
-                          fail_silently=False)
+
+                html_content = render_to_string("email_template.html",{'acordo':acordo})
+                text_content = strip_tags(html_content)
+
+                email = EmailMultiAlternatives(
+                    #Assunto
+                    'O Vencimento do Acordo {} Está Próximo'.format(acordo.acordo),
+
+                    #Conteúdo HTML -> email_template.html
+                    text_content,
+
+                    #Remetente
+                    settings.EMAIL_HOST_USER,
+
+                    #Destinatário
+                    [acordo.cliente.executivo.email],
+                )
+
+                email.attach_alternative(html_content, 'text/html')
+                email.send()
