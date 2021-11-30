@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'import_export',
+    'django_extensions',
 
     # Google Auth
     'django.contrib.sites',
@@ -166,9 +167,13 @@ LOGOUT_REDIRECT_URL = 'home'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_USE_TLS=True
-EMAIL_PORT=587
-EMAIL_HOST_USER='jorge.mustafa@itmss.com.br'
-EMAIL_HOST_PASSWORD='Mohamet20@!'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_TO = 'jorginhomustafa@gmail.com'
+
+

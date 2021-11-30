@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
 from apps.colaboradores.models import Colaborador
 from apps.grupos.models import Grupo
 from apps.postos.models import POS
