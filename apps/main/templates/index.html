@@ -1,228 +1,14 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Digital THFI</title>
-
-
-    <!-- Custom fonts for this template-->
-    <link href={% static "fontawesome-free/css/all.min.css" %} rel="stylesheet" type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
-          integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-
-    <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    <link href={% static "css/style_form_login.css" %} rel="stylesheet">
-    <link href={% static "css/sb-admin-2.min.css" %} rel="stylesheet">
-    <link href={% static "css/style.css" %} rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-    <!--Chartjs CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-
-
-</head>
-
-<body id="page-top">
-
-<!-- Page Wrapper -->
-<div id="wrapper">
-    <!-- Sidebar -->
-    {% if user.is_authenticated %}
-        <ul class="navbar-nav sidebar sidebar-dark" id="sidebar-custom">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center">
-                <img src="{% static 'img\logo-th-2.png' %}" alt="logo-th-2" id="logo-th-2">
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!--            &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
-            <!--            <li class="nav-item">-->
-            <!--                <a class="nav-link" href="index.html">-->
-            <!--                    <i class="fas fa-fw fa-tachometer-alt"></i>-->
-            <!--                    <span>Dashboard</span></a>-->
-            <!--            </li>-->
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <li class="nav-item">
-
-                <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home"
-                                                               aria-hidden="true"></i><span>Home</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_acordo' %}"><i class="fa fa-plane" aria-hidden="true"></i><span>Acordos Aéreos</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_cliente' %}"><i class="fa fa-users" aria-hidden="true"></i><span>Clientes</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_colaborador' %}"><i class="fa fa-briefcase"
-                                                                           aria-hidden="true"></i><span>Colaboradores</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_fee' %}"><i class="bi bi-currency-dollar"></i></i>
-                    <span>Fees</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_fornecedor' %}"><i class="fa fa-industry" aria-hidden="true"></i>
-                    <span>Fornecedores</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_grupo' %}"><i
-                        class="bi bi-collection-fill"></i><span>Grupos</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_posto' %}"><i class="bi bi-geo-alt-fill"></i><span>POS</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_produto' %}"><i class="bi bi-boxes"></i><span>Produtos</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_tarifario' %}"><i class="fa fa-bed" aria-hidden="true"></i>
-                    <span>Tarifários</span></a>
-            </li>
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            {#                <li class="nav-item">#}
-            {#                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"#}
-            {#                       aria-expanded="true" aria-controls="collapseTwo">#}
-            {#                        <i class="fas fa-fw fa-cog"></i>#}
-            {#                        <span>Components</span>#}
-            {#                    </a>#}
-            {#                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">#}
-            {#                        <div class="bg-white py-2 collapse-inner rounded">#}
-            {#                            <h6 class="collapse-header">Custom Components:</h6>#}
-            {#                            <a class="collapse-item" href="buttons.html">Buttons</a>#}
-            {#                            <a class="collapse-item" href="cards.html">Cards</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </li>#}
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            {#                <li class="nav-item">#}
-            {#                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"#}
-            {#                       aria-expanded="true" aria-controls="collapseUtilities">#}
-            {#                        <i class="fas fa-fw fa-wrench"></i>#}
-            {#                        <span>Utilities</span>#}
-            {#                    </a>#}
-            {#                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"#}
-            {#                         data-parent="#accordionSidebar">#}
-            {#                        <div class="bg-white py-2 collapse-inner rounded">#}
-            {#                            <h6 class="collapse-header">Custom Utilities:</h6>#}
-            {#                            <a class="collapse-item" href="utilities-color.html">Colors</a>#}
-            {#                            <a class="collapse-item" href="utilities-border.html">Borders</a>#}
-            {#                            <a class="collapse-item" href="utilities-animation.html">Animations</a>#}
-            {#                            <a class="collapse-item" href="utilities-other.html">Other</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </li>#}
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            {#        <div class="sidebar-heading">#}
-            {#            Addons#}
-            {#        </div>#}
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            {#                <li class="nav-item active">#}
-            {#                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"#}
-            {#                       aria-controls="collapsePages">#}
-            {#                        <i class="fas fa-fw fa-folder"></i>#}
-            {#                        <span>Pages</span>#}
-            {#                    </a>#}
-            {#                    <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"#}
-            {#                         data-parent="#accordionSidebar">#}
-            {#                        <div class="bg-white py-2 collapse-inner rounded">#}
-            {#                            <h6 class="collapse-header">Login Screens:</h6>#}
-            {#                            <a class="collapse-item" href="login.html">Login</a>#}
-            {#                            <a class="collapse-item" href="register.html">Register</a>#}
-            {#                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>#}
-            {#                            <div class="collapse-divider"></div>#}
-            {#                            <h6 class="collapse-header">Other Pages:</h6>#}
-            {#                            <a class="collapse-item" href="404.html">404 Page</a>#}
-            {#                            <a class="collapse-item active" href="index.html">Blank Page</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </li>#}
-
-            {#        <!-- Nav Item - Charts -->#}
-            {#        <li class="nav-item">#}
-            {#            <a class="nav-link" href="charts.html">#}
-            {#                <i class="fas fa-fw fa-chart-area"></i>#}
-            {#                <span>Charts</span></a>#}
-            {#        </li>#}
-            {##}
-            {#        <!-- Nav Item - Tables -->#}
-            {#        <li class="nav-item">#}
-            {#            <a class="nav-link" href="tables.html">#}
-            {#                <i class="fas fa-fw fa-table"></i>#}
-            {#                <span>Tables</span></a>#}
-            {#        </li>#}
-
-            {#        <!-- Divider -->#}
-            {#        <hr class="sidebar-divider d-none d-md-block">#}
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Topbar -->
+{% block header %}
+<!-- Topbar -->
         <nav class="navbar navbar-expand navbar topbar mb-4 static-top shadow" id="navbar-custom">
 
         <div class="container col-md-12">
 
-        <h1 class="h4 mb-4 text-white " style="padding-left: 50px; padding-top: 20px">
-            Olá, {{ data.usuario.first_name }} {{ data.usuario.last_name }}</h1>
+        <p class="sm-5 text-white " style="padding-left: 50px; padding-top: 20px">
+            Olá, {{ data.usuario.first_name }} {{ data.usuario.last_name }}</p>
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -283,77 +69,6 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos os alertas</a>
             </div>
         </li>
-    {% endif %}
-
-    <!-- Nav Item - Messages -->
-    {#                    <li class="nav-item dropdown no-arrow mx-1">#}
-    {#                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"#}
-    {#                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-    {#                            <i class="fas fa-envelope fa-fw"></i>#}
-    {#                            <!-- Counter - Messages -->#}
-    {#                            <span class="badge badge-danger badge-counter">7</span>#}
-    {#                        </a>#}
-    {#                        <!-- Dropdown - Messages -->#}
-    {#                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"#}
-    {#                             aria-labelledby="messagesDropdown">#}
-    {#                            <h6 class="dropdown-header">#}
-    {#                                Message Center#}
-    {#                            </h6>#}
-    {#                            <a class="dropdown-item d-flex align-items-center" href="#">#}
-    {#                                <div class="dropdown-list-image mr-3">#}
-    {#                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"#}
-    {#                                         alt="...">#}
-    {#                                    <div class="status-indicator bg-success"></div>#}
-    {#                                </div>#}
-    {#                                <div class="font-weight-bold">#}
-    {#                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a#}
-    {#                                        problem I've been having.#}
-    {#                                    </div>#}
-    {#                                    <div class="small text-gray-500">Emily Fowler · 58m</div>#}
-    {#                                </div>#}
-    {#                            </a>#}
-    {#                            <a class="dropdown-item d-flex align-items-center" href="#">#}
-    {#                                <div class="dropdown-list-image mr-3">#}
-    {#                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"#}
-    {#                                         alt="...">#}
-    {#                                    <div class="status-indicator"></div>#}
-    {#                                </div>#}
-    {#                                <div>#}
-    {#                                    <div class="text-truncate">I have the photos that you ordered last month, how#}
-    {#                                        would you like them sent to you?#}
-    {#                                    </div>#}
-    {#                                    <div class="small text-gray-500">Jae Chun · 1d</div>#}
-    {#                                </div>#}
-    {#                            </a>#}
-    {#                            <a class="dropdown-item d-flex align-items-center" href="#">#}
-    {#                                <div class="dropdown-list-image mr-3">#}
-    {#                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"#}
-    {#                                         alt="...">#}
-    {#                                    <div class="status-indicator bg-warning"></div>#}
-    {#                                </div>#}
-    {#                                <div>#}
-    {#                                    <div class="text-truncate">Last month's report looks great, I am very happy with#}
-    {#                                        the progress so far, keep up the good work!#}
-    {#                                    </div>#}
-    {#                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>#}
-    {#                                </div>#}
-    {#                            </a>#}
-    {#                            <a class="dropdown-item d-flex align-items-center" href="#">#}
-    {#                                <div class="dropdown-list-image mr-3">#}
-    {#                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"#}
-    {#                                         alt="...">#}
-    {#                                    <div class="status-indicator bg-success"></div>#}
-    {#                                </div>#}
-    {#                                <div>#}
-    {#                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone#}
-    {#                                        told me that people say this to all dogs, even if they aren't good...#}
-    {#                                    </div>#}
-    {#                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>#}
-    {#                                </div>#}
-    {#                            </a>#}
-    {#                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>#}
-    {#                        </div>#}
-    {#                    </li>#}
 
     <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -397,17 +112,16 @@
     </div>
     </nav>
     <!-- End of Topbar -->
+{% endblock %}
+
+
+{% block main %}
 
     <div class="container">
-
-    <!-- Page Heading -->
-    {% block main %}
-
-        <div class="container">
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header text-white" style="background-color: #003D68">
                         Informação
                     </div>
                     <div class="card-body">
@@ -419,7 +133,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header text-white" style="background-color: #003D68">
                         Estatísticas
                     </div>
                     <div class="card-body">
@@ -449,176 +163,87 @@
     <!--End Topside-->
 
 
-        <!--Graphs-->
-        <div class="container">
-            <div class="row my-5">
-                <div class="col-md-6">
-                    <div class="bg-white">
-                        <canvas id="myChart1" width="400" height="300"></canvas>
-                        <script>
-                            var ctx = document.getElementById('myChart1').getContext('2d');
-                            var myChart1 = new Chart(ctx, {
-                                type: 'pie',
-                                data: {
-                                    labels: [{% for cliente in clientes %} '{{ cliente.nome }}', {% endfor %}],
-                                    datasets: [{
-                                        label: 'Clientes',
-                                        data: [{% for cliente in clientes %} {{ cont_clientes }}, {% endfor %}],
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                        ],
-                                        borderWidth: 1
+    <!--Graphs-->
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6">
+                <div class="bg-white">
+                    <canvas id="myChart1" width="400" height="300"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart1').getContext('2d');
+                        var myChart1 = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: [{% for cliente in clientes %} '{{ cliente.nome }}', {% endfor %}],
+                                datasets: [{
+                                    label: 'Clientes',
+                                    data: [{% for cliente in clientes %} {{ cont_clientes }}, {% endfor %}],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
                                     }]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero: true
-                                            }
-                                        }]
-                                    }
                                 }
-                            });
-                        </script>
-                    </div>
+                            }
+                        });
+                    </script>
                 </div>
-                <div class="col-md-6">
-                    <div class="bg-white">
-                        <canvas id="myChart" width="400" height="300"></canvas>
-                        <script>
-                            var ctx = document.getElementById('myChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                    datasets: [{
-                                        label: 'Products',
-                                        data: [12, 19, 3, 5, 2, 3],
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
+            </div>
+            <div class="col-md-6">
+                <div class="bg-white">
+                    <canvas id="myChart" width="400" height="300"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                datasets: [{
+                                    label: 'Products',
+                                    data: [12, 19, 3, 5, 2, 3],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
                                     }]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero: true
-                                            }
-                                        }]
-                                    }
                                 }
-                            });
-                        </script>
-                    </div>
+                            }
+                        });
+                    </script>
                 </div>
             </div>
         </div>
-        <!--End Graphs-->
-    {% endblock %}
-
-
     </div>
-
-    <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-
-</div>
-
-<!-- End of Page Wrapper -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-gray">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; ITMSS - THG | 2022</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-
-<!--&lt;!&ndash; Scroll to Top Button&ndash;&gt;-->
-<!--<a class="scroll-to-top rounded" href="#page-top">-->
-<!--    <i class="fas fa-angle-up"></i>-->
-<!--</a>-->
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pronto para Sair?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Selecione "Sair" se você está pronto para sair da sessão.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                {#                <a class="btn btn-primary" href="{% url 'account_logout' %}">Sair</a>#}
-                <form method="post" action="{% url 'account_logout' %}">
-                    {% csrf_token %}
-                    {#                    {% if redirect_field_value %}#}
-                    {#                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>#}
-                    {#                    {% endif %}#}
-                    <button class="btn btn-danger" type="submit">Sair</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-<!-- Bootstrap core JavaScript-->
-<script src= {% static "jquery/jquery.min.js" %}></script>
-<script src= {% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
-
-<!-- Core plugin JavaScript-->
-<script src= {% static "jquery-easing/jquery.easing.min.js" %}></script>
-
-<!-- Custom scripts for all pages-->
-<script src= {% static "js/sb-admin-2.min.js" %}></script>
-
-<script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-
-<!-- jQuery and Bootstrap Bundle (Chart Scripts) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
-
+    <!--End Graphs-->
+{% endblock %}

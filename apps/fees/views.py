@@ -46,3 +46,11 @@ def delete_fee(request, pk):
         fee.delete()
         return redirect('list_fee')
     return render(request, 'fee_delete_confirm.html', {'fee': fee})
+
+
+# def media_fee(request):
+#     taxas = Fee.int(
+#                 Fee.aenacon + Fee.aeinton + Fee.honacon + Fee.hointon + Fee.canacon + Fee.cainton + Fee.aenacoff + Fee.aeintoff + Fee.honacoff + Fee.hointoff + Fee.canacoff + \
+#                 Fee.caintoff + Fee.vip + Fee.doc + Fee.fer + Fee.emergencial + Fee.ateae + Fee.segViagem + Fee.passRod + Fee.reembolso + Fee.cancelamento + Fee.assentoConf \
+#                 + Fee.implantacao + Fee.treinamento + Fee.consultoria + Fee.expense + Fee.eventos + Fee.demais
+#     )

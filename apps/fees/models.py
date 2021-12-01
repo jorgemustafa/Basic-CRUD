@@ -1,4 +1,3 @@
-import datetime
 from django.db import models
 from apps.clientes.models import Cliente
 from django.contrib.auth.models import User
@@ -6,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Fee(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Nome do Cliente', null=True)
-    # media = models.IntegerField('Valor do Fee - Média')
+    # media = models.IntegerField('Valor Médio do Fee', blank=True)
     aenacon = models.IntegerField('Valor do Fee - Aéreo Nacional Online')
     aeinton = models.IntegerField('Valor do Fee - Aéreo Internacional Online')
     honacon = models.IntegerField('Valor do Fee - Hotel Nacional Online')
