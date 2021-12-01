@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 class Fee(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Nome do Cliente', null=True)
+    # media = models.IntegerField('Valor do Fee - Média')
     aenacon = models.IntegerField('Valor do Fee - Aéreo Nacional Online')
     aeinton = models.IntegerField('Valor do Fee - Aéreo Internacional Online')
     honacon = models.IntegerField('Valor do Fee - Hotel Nacional Online')

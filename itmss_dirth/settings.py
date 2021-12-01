@@ -107,6 +107,15 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5433',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'hmldirth ',
+    #     'USER': 'hmldirth ',
+    #     'PASSWORD': 'lsx2tkpd190sb9',
+    #     'HOST': '173.0.0.101 ',
+    #     'PORT': '5432',
+    # }
 }
 
 AUTHENTICATION_BACKENDS = [
@@ -174,5 +183,3 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-
-
