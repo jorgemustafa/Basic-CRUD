@@ -2,114 +2,119 @@
 {% load static %}
 
 {% block header %}
-<!-- Topbar -->
-        <nav class="navbar navbar-expand navbar topbar mb-4 static-top shadow" id="navbar-custom">
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar topbar mb-4 static-top shadow" id="navbar-custom">
 
         <div class="container col-md-12">
 
-        <p class="sm-5 text-white " style="padding-left: 50px; padding-top: 20px">
-            Olá, {{ data.usuario.first_name }} {{ data.usuario.last_name }}</p>
 
-        <!-- Sidebar Toggle (Topbar) -->
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-        </button>
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
 
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
+            <p class="sm-5 text-white " style="padding-left: 50px; padding-top: 20px">
+                Olá, {{ data.usuario.first_name }} {{ data.usuario.last_name }}</p>
 
-        <!-- Nav Item - Alerts -->
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-            </a>
-            <!-- Dropdown - Alerts -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                 aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                    Central de Alertas
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
+                <!-- Nav Item - Alerts -->
+
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell fa-fw"></i>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter">3+</span>
+                    </a>
+                    <!-- Dropdown - Alerts -->
+                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">
+                            Central de Alertas
+                        </h6>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-primary">
+                                    <i class="fas fa-file-alt text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">15/12/2021</div>
+                                <span class="font-weight">Sugestões? Entre em contato com nosso time de desenvolvimento!</span>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-success">
+                                    <i class="fas fa-donate text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">09/12/2021</div>
+                                Em breve novidades no sistema!
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-warning">
+                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">02/12/2021</div>
+                                Bem vindo ao novo sistema da Tour House, Diretório TH
+                            </div>
+                        </a>
+                        <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos os alertas</a>
+                    </div>
+                </li>
+
+                <div class="topbar-divider d-none d-sm-block"></div>
+
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+
+                    {% if user.is_authenticated %}
+
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ data.usuario }}</span>
+                            <img class="img-profile rounded-circle" src={% static "img/undraw_profile.svg" %}>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            {% for colaborador in colaboradores %}
+                                <a class="dropdown-item" href="{% url 'update_colaborador' colaborador.id %}">
+                                    {#                                <a class="dropdown-item" href="{% url 'settings_colaborador' %}">#}
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                            {% endfor %}
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Configurações
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Log de Atividade
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Sair
+                            </a>
+
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">15/12/2021</div>
-                        <span class="font-weight">Sugestões? Entre em contato com nosso time de desenvolvimento!</span>
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                            <i class="fas fa-donate text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">09/12/2021</div>
-                        Em breve novidades no sistema!
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-warning">
-                            <i class="fas fa-exclamation-triangle text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">02/12/2021</div>
-                        Bem vindo ao novo sistema da Tour House, Diretório TH
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos os alertas</a>
-            </div>
-        </li>
 
-    <div class="topbar-divider d-none d-sm-block"></div>
+                    {% endif %}
 
-    <!-- Nav Item - User Information -->
-    <li class="nav-item dropdown no-arrow">
+                </li>
 
-        {% if user.is_authenticated %}
-
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ data.usuario }}</span>
-                <img class="img-profile rounded-circle" src={% static "img/undraw_profile.svg" %}>
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Perfil
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Configurações
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Log de Atividade
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Sair
-                </a>
-            </div>
-
-        {% endif %}
-
-    </li>
-
-    </ul>
-    </div>
+            </ul>
+        </div>
     </nav>
     <!-- End of Topbar -->
 {% endblock %}
@@ -119,38 +124,38 @@
 
     <div class="container">
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-header text-white" style="background-color: #003D68">
                         Informação
                     </div>
                     <div class="card-body">
                         <marquee behavior="" direction="">
-                            <h3 class="my-4">Novo sistema Digital FI | Dados dos clientes nas suas mãos!</h3>
+                            <h3 class="my-4">Novo sistema FI Digital | Dados dos clientes nas suas mãos!</h3>
                         </marquee>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header text-white" style="background-color: #003D68">
-                        Estatísticas
+                        Estatísticas Gerais
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <a class="text-decoration-none text-dark" href="{% url 'list_colaborador' %}">
+                                <a class="text-decoration-none text-dark" href="{% url 'list_acordo' %}">
                                     <div class="card my-card shadow text-center p-3">
-                                        <h4>Colaboradores <i class="fas fa-users"></i></h4>
-                                        <h3>{{ cont_colaboradores }}</h3>
+                                        <h4><i class="fa fa-plane"> Acordos Aéreos</i></h4>
+                                        <h3>{{ cont_acordosae }}</h3>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a class="text-decoration-none text-dark" href="{% url 'list_produto' %}">
+                                <a class="text-decoration-none text-dark" href="{% url 'list_tarifario' %}">
                                     <div class="card my-card shadow text-center p-3">
-                                        <h4>Produtos <i class="fas fa-box"></i></h4>
-                                        <h3>{{ cont_produtos }}</h3>
+                                        <h4><i class="fa fa-bed"> Tarifários</i></h4>
+                                        <h3>{{ cont_tarifarios }}</h3>
                                     </div>
                                 </a>
                             </div>

@@ -29,7 +29,7 @@
         <tr>
             <th scope="col">Nome POS</th>
             <th scope="col">Código POS</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -43,7 +43,12 @@
             <tr>
                 <th scope="row"><a href="{% url 'update_posto' posto.id %}">{{ posto.nome }}</a></th>
                 <td>{{ posto.codigo }}</td>
-                <td>{{ posto.ativo }}</td>
+                <td>{% if posto.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
                     <a href="{% url 'delete_posto' posto.id %}"><i class="bi bi-trash"></i></a>
                 </td>

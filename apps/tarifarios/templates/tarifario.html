@@ -37,7 +37,7 @@
             <th scope="col">Tarifa Acordo</th>
             <th scope="col">Tarifa Flutuante</th>
             <th scope="col">Validade</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -55,11 +55,31 @@
                 <td>{{ tarifario.diaria }}</td>
                 <td>{{ tarifario.taxa }}</td>
                 <td>{{ tarifario.tipoQuarto }}</td>
-                <td>{{ tarifario.tarifaQualif }}</td>
-                <td>{{ tarifario.tarifaAcordo }}</td>
-                <td>{{ tarifario.tarifaFlut }}</td>
+            <td>{% if tarifario.tarifaQualif == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                    {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
+            <td>{% if tarifario.tarifaAcordo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                    {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
+                <td>{% if tarifario.tarifaFlutuante == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                    {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>{{ tarifario.validade }}</td>
-                <td>{{ tarifario.ativo}}</td>
+                <td>{% if tarifario.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
                     <a href="{% url 'delete_tarifario' tarifario.id %}"><i class="bi bi-trash"></i></a>
                 </td>

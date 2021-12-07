@@ -29,7 +29,7 @@
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -40,13 +40,17 @@
         </tr>
         </thead>
         <tbody>
-        {% for colaborador in colaborador %}
+        {% for colaborador in colaboradores %}
             <tr>
                 <th scope="row"><a href="{% url 'update_colaborador' colaborador.id %}">{{ colaborador.nome }}</a></th>
                 <td>{{ colaborador.email }}</td>
-                <td>{{ colaborador.ativo }}</td>
+                <td>{% if colaborador.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
-
                     <a href="{% url 'delete_colaborador' colaborador.id %}"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>

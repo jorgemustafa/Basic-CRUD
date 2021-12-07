@@ -8,7 +8,6 @@ from .models import Grupo
 @login_required
 def list_grupo(request):
     grupo = Grupo.objects.all()
-
     myFilter = GrupoFilter(request.GET, queryset=grupo)
     grupo = myFilter.qs
 

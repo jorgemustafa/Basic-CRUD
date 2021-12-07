@@ -7,12 +7,11 @@ from .models import Colaborador
 
 @login_required
 def list_colaborador(request):
-    colaborador = Colaborador.objects.all()
+    colaboradores = Colaborador.objects.all()
+    myFilter = ColaboradorFilter(request.GET, queryset=colaboradores)
+    colaboradores = myFilter.qs
 
-    myFilter = ColaboradorFilter(request.GET, queryset=colaborador)
-    colaborador = myFilter.qs
-
-    return render(request, 'colaborador.html', {'colaborador': colaborador, 'myFilter': myFilter})
+    return render(request, 'colaborador.html', {'colaboradores': colaboradores, 'myFilter': myFilter})
 
 
 @login_required
@@ -46,3 +45,7 @@ def delete_colaborador(request, pk):
         colaborador.delete()
         return redirect('list_colaborador')
     return render(request, 'colaborador_delete_confirm.html', {'colaborador': colaborador})
+
+# def settings_colaborador(request,pk):
+#         colaboradores = get_object_or_404(Colaborador, pk=pk)
+#         return render(request, 'info_user.html', {'colaboradores': colaboradores})

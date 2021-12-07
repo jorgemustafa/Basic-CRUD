@@ -8,12 +8,13 @@ from ..fornecedores.models import Fornecedor
 
 @login_required
 def list_acordo(request):
-    acordos = AcordoAereo.objects.all()
 
+    acordos = AcordoAereo.objects.filter(cliente__executivo__user=request.user)
     myFilter = AcordoFilter(request.GET, queryset=acordos)
     acordos = myFilter.qs
 
     return render(request, 'acordos.html', {'acordos': acordos, 'myFilter': myFilter})
+
 
 @login_required
 def new_acordo(request, pk):

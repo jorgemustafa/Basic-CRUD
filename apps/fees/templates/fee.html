@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%  load crispy_forms_tags %}
+{% load crispy_forms_tags %}
 
 {% block main %}
 
@@ -57,7 +57,7 @@
             <th scope="col">Eventos</th>
             <th scope="col">Demais</th>
             <th scope="col">Renovação</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -100,7 +100,12 @@
                 <td>{{ fee.eventos }}</td>
                 <td>{{ fee.demais }}</td>
                 <td>{{ fee.renovacao }}</td>
-                <td>{{ fee.ativo }}</td>
+                <td>{% if fee.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
 
                     <a href="{% url 'delete_fee' fee.id %}"><i class="bi bi-trash"></i></a>

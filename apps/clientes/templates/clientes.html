@@ -35,7 +35,7 @@
             <th scope="col">POS</th>
             <th scope="col">Vencimento</th>
             <th scope="col">Vigência</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -55,7 +55,12 @@
                 <td>{{ cliente.postos }}</td>
                 <td>{{ cliente.vencimento }}</td>
                 <td>{{ cliente.vigencia }}</td>
-                <td>{{ cliente.ativo }}</td>
+                <td>{% if cliente.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                    {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
 
                     <a href="{% url 'delete_cliente' cliente.id %}"><i class="bi bi-trash"></i></a>

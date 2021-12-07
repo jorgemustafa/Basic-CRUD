@@ -7,7 +7,7 @@ from .models import Fee
 
 @login_required
 def list_fee(request):
-    fees = Fee.objects.all()
+    fees = Fee.objects.filter(cliente__executivo__user=request.user)
 
     myFilter = FeeFilter(request.GET, queryset=fees)
     fees = myFilter.qs

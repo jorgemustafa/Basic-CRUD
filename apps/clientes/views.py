@@ -7,8 +7,7 @@ from .models import Cliente
 
 @login_required
 def list_cliente(request):
-    clientes = Cliente.objects.all()
-
+    clientes = Cliente.objects.filter(executivo__user=request.user)
     myFilter = ClienteFilter(request.GET, queryset=clientes)
     clientes = myFilter.qs
 

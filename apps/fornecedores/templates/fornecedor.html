@@ -24,14 +24,14 @@
         </div>
     </div>
 
-     <table class="table table-responsive-md">
+    <table class="table table-responsive-md">
         <thead class="thead-light">
         <tr>
             <th scope="col">Razão Social</th>
             <th scope="col">Nome Fantasia</th>
             <th scope="col">Grupo do Fornecedor</th>
             <th scope="col">Produtos</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -48,7 +48,12 @@
                 <td>{{ fornecedor.fantasia }}</td>
                 <td>{{ fornecedor.rede }}</td>
                 <td>{{ fornecedor.produtos }}</td>
-                <td>{{ fornecedor.ativo }}</td>
+                <td>{% if fornecedor.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
 
                     <a href="{% url 'delete_fornecedor' fornecedor.id %}"><i class="bi bi-trash"></i></a>

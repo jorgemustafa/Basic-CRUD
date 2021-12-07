@@ -7,7 +7,7 @@ from .forms import PostoForm
 
 @login_required
 def list_posto(request):
-    posto = POS.objects.all()
+    posto = POS.objects.filter(cliente__executivo__user=request.user)
 
     myFilter = POSFilter(request.GET, queryset=posto)
     posto = myFilter.qs

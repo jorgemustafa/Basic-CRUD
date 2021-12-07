@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -99,23 +99,23 @@ WSGI_APPLICATION = 'itmss_dirth.wsgi.application'
 
 DATABASES = {
 
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dirthbd',
-        'USER': 'postgres',
-        'PASSWORD': 'Pgadm1n21',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
-    }
-
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'hmldirth ',
-    #     'USER': 'hmldirth ',
-    #     'PASSWORD': 'lsx2tkpd190sb9',
-    #     'HOST': '173.0.0.101 ',
+    #     'NAME': 'dirth',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'Pgadm1n21',
+    #     'HOST': '127.0.0.1',
     #     'PORT': '5432',
     # }
+
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASS"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT"),
+    }
 }
 
 AUTHENTICATION_BACKENDS = [

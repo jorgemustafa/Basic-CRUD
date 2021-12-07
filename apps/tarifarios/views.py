@@ -7,7 +7,7 @@ from .forms import TarifarioForm
 
 @login_required
 def list_tarifario(request):
-    tarifario = Tarifario.objects.all()
+    tarifario = Tarifario.objects.filter(cliente__executivo__user=request.user)
 
     myFilter = TarifarioFilter(request.GET, queryset=tarifario)
     tarifario = myFilter.qs

@@ -29,7 +29,7 @@
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Código</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
@@ -43,7 +43,12 @@
             <tr>
                 <th scope="row"><a href="{% url 'update_grupo' grupo.id %}">{{ grupo.nome }}</a></th>
                 <td>{{ grupo.cod }}</td>
-                <td>{{ grupo.ativo }}</td>
+                <td>{% if grupo.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                    {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
 
                     <a href="{% url 'delete_grupo' grupo.id %}"><i class="bi bi-trash"></i></a>

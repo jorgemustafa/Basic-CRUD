@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 
 {% block main %}
 
@@ -39,7 +39,7 @@
             <th scope="col">Desconto</th>
             <th scope="col">Destino</th>
             <th scope="col">Continente</th>
-            <th scope="col">Ativo</th>
+            <th scope="col">Status</th>
             <th scope="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Modal"
@@ -61,7 +61,12 @@
                 <td>{{ acordo.desconto }}</td>
                 <td>{{ acordo.destino }}</td>
                 <td>{{ acordo.continente }}</td>
-                <td>{{ acordo.ativo }}</td>
+                <td>{% if acordo.ativo == True %}
+                    <i class="fas fa-check text-success mr-3"></i>
+                {% else %}
+                    <i class="fas fa-times text-danger mr-3"></i>
+                {% endif %}
+                </td>
                 <td>
                     <a href="{% url 'delete_acordo' acordo.id %}"><i class="bi bi-trash"></i></a>
                 </td>
